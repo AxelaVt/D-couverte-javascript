@@ -1,4 +1,5 @@
 
+
 var pion = document.getElementById("pion");
 var s = pion.style;
 var x = pion.offsetLeft;
@@ -11,35 +12,59 @@ document.onkeydown = function(event){
 console.log(x);
 console.log(y);
 
-//if (x > 755){ x = 755;}
-//if (x < 0){ x = 0;}
-//if (y > 755){ y = 755;}
-//if (y < 0){ y = 0;}
 
 switch (keyCode){
-  case 38:  //top
-  y = y-40;  //equivaut à y -= 40;
+  case 104:  //top  38
+  y = y-40;
   if (y < 0){ y = 0;}
   break;
 
-  case 39:  //right
-  x = x+40;  //equivaut à x += 40;
+  case 102:  //right 39
+  x = x+40;
   if (x > 750){ x = 750;}
   break;
 
-  case 40:  //botton
-  y = y+40;  //equivaut à y += 40;
+  case 98:  //botton 40
+  y = y+40;
   if(y > 750){ y = 750;}
   break;
 
-  case 37:   //left
-  x = x-40;  //equivaut à x -= 40;
+  case 100:   //left 37
+  x = x-40;
   if (x < 0){ x = 0;}
   break;
+
+  case 105:  //top-right
+  x = x + 40;
+  y = y - 40;
+  if (x > 750){ x = 750;}
+  if (y < 0){ y = 0;}
+  break;
+
+  case 103:  //top-left
+  x = x - 40;
+  y = y - 40;
+  if (x < 0){ x = 0;}
+  if (y < 0){ y = 0;}
+  break;
+
+  case 97:  //bottom-left
+  x = x - 40;
+  y = y + 40;
+  if (x < 0){ x = 0;}
+  if (y > 750){ y = 750;}
+  break;
+
+  case 99:  //bottom-right
+  x = x + 40;
+  y = y + 40;
+  if (x > 750){ x = 750;}
+  if (y > 750){ y = 750;}
+  break;
+
   default:
   break;
 }
-
 
 
   s.left = String(x) + "px";
