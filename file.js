@@ -1,105 +1,67 @@
+const H_GRID = 20;
+const V_GRID = 20;
+const GRID_SIZE = 40;
 
+const WINDOW_WIDTH = H_GRID * GRID_SIZE;
+const WINDOW_HEIGHT = V_GRID * GRID_SIZE;
 
+var plateau = document.getElementById('plateau');
+plateau.style.width = WINDOW_WIDTH;
+plateau.style.height = WINDOW_HEIGHT;
 
-var pion = document.getElementById("pion");
-var s = pion.style;
-var x = pion.offsetLeft;
-var y = pion.offsetTop;
+var blockGrid = [];
+for(var i = 0; i < H_GRID; i++){
+  blockGrid.push([]);
 
-document.onkeydown = function(event){
-  var event = event || window.event,
-    keyCode = event.keyCode;
+  for(var j = 0; j < V_GRID; j++){
+    let block = document.createElement("div");
+    block.style.width = "40px";
+    block.style.height = "40px";
+    block.style.display = "flex";
+    block.style.position = "absolute";
 
-console.log(x);
-console.log(y);
+    if (random100() > 80){
+      //block.style.backgroundColor = "black";  //si supérieur à valeur, passer le fond en noir,c'est un mur on ne peut pas le traverser
+      block.style.backgroundImage = 'url("img/wall.png")';
+      //block.style.backgroundSize = 'contain';
+      block.setAttribute("class", "wall");
+      block.traverser = false;
+      block.style.zIndex = '90';
+      }
+      else if (random100() > 70) {
+      block.style.backgroundImage = 'url("img/woodwall.png")';
+      //block.style.backgroundSize = 'contain';
+      block.style.zIndex = '90';
+      block.setAttribute("class", "breakableWall");
+      block.traverser = false;
+      }
+      else {
+        block.style.backgroundColor = "#8bc34a";
+        block.setAttribute("class", "floor"); //sinon fond en vert on peut le traverser
+        block.traverser = true;
+      }
 
-
-  switch (keyCode){
-    case 104:  //top  38
-    y = y-40;
-    if (y < 0){ y = 0;}
-    break;
-
-    case 102:  //right 39
-    x = x+40;
-    if (x > 800){ x = 800;} //750 à cause des borders, passage à 800 à cause du padding
-    break;
-
-    case 98:  //botton 40
-    y = y+40;
-    if(y > 800){ y = 800;}
-    break;
-
-    case 100:   //left 37
-    x = x-40;
-    if (x < 0){ x = 0;}
-    break;
-
-    case 105:  //top-right
-    x = x + 40;
-    y = y - 40;
-    if (x > 800){ x = 800;}
-    if (y < 0){ y = 0;}
-    break;
-
-    case 103:  //top-left
-    x = x - 40;
-    y = y - 40;
-    if (x < 0){ x = 0;}
-    if (y < 0){ y = 0;}
-    break;
-
-    case 97:  //bottom-left
-    x = x - 40;
-    y = y + 40;
-    if (x < 0){ x = 0;}
-    if (y > 800){ y = 800;}
-    break;
-
-    case 99:  //bottom-right
-    x = x + 40;
-    y = y + 40;
-    if (x > 800){ x = 800;}
-    if (y > 800){ y = 800;}
-    break;
-
-    default:
-    break;
+      block.style.marginLeft = (i * GRID_SIZE).toString()+"px";  //  GRID_SIZE = 40
+      block.style.marginTop = (j * GRID_SIZE).toString()+"px";
+      document.getElementById("plateau").appendChild(block);
+      blockGrid[i].push(block);
+    }
   }
-  s.left = String(x) + "px";
-  s.top = String(y) + "px";
-}
-
-//création des buissons
-
-//var i = 0;
-// while (i<=99) {
-// var DivPlateau = document.getElementById('plateau');
-// var newDiv = document.createElement("div");
-// DivPlateau.appendChild(newDiv);
-// let classBuisson = newDiv.classList.add("buisson");
-// i++
-//  }
-
-function makeDiv(){
-  var DivPlateau = document.getElementById('plateau');
-  var newDiv = document.createElement("div");
-  DivPlateau.appendChild(newDiv);
-  newDiv.classList.add("buisson");
-  // newDiv.setAttribute("id","buisson");
-}
+  console.log (blockGrid);
+  //console.log (blockGrid[0][0].block.traverser);
+  //blocks qui resteront en vert
+  blockGrid[0][0].style.backgroundColor = "#8bc34a";
+  //blockGrid[0][0].block.traverser = "true";
+  blockGrid[1][1].style.backgroundColor = "#8bc34a";
+  //blockGrid[1][1].block.traverser = true;
+  blockGrid[1][0].style.backgroundColor = "#8bc34a";
+  //blockGrid[1][0].block.traverser = true;
+  blockGrid[0][1].style.backgroundColor = "#8bc34a";
+  //blockGrid[0][1].block.traverser = true;
+  //blockGrid[H_GRID - 1][1].style.backgroundColor = "#8bc34a";
+  //blockGrid[H_GRID - 1][1].traverser = true;
 
 
-var i = 0;
-while (i<=50) {
-makeDiv();
-//var buisson = document.getElementsByClassName('buisson');
-var buisson = document.querySelector('div');
-pos_x = Math.floor( Math.random() * 100 );
-pos_y = Math.floor( Math.random() * 100 );
-console.log(pos_x);
-console.log(pos_y);
-buisson.style.left = String(pos_x) + "px";
-buisson.style.top = String(pos_y) + "px";
-i++
-}
+  function random100() {
+    return Math.floor(Math.random() * 100);
+  }
