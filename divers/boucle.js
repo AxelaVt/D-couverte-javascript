@@ -1,49 +1,36 @@
 
-// déplacement des ennemis
-
-var ennemi = document.querySelectorAll('div.ennemi');
-//var ennemi = document.querySelectorAll('div#ennemi');
-console.log(ennemi);
-
-for(i = 0; i < ennemi.length; i++ ){
-   var xEnnemi = ennemi[i].offsetLeft / 40;
-   var yEnnemi = ennemi[i].offsetTop / 40;
-   console.log(ennemi[i]);
-   console.log("xEnnemi =" + xEnnemi);
-   console.log("yEnnemi =" + yEnnemi);
-   console.log(ennemi[i].direction);
-
-var direction = ennemi[i].direction;
 
 function loop(){  //60x par seconde
-
+  var frame = 0;
  if (frame === 60) {
-   var frame = 0;
      switch(direction){
        case "left":
        if (yEnnemi> 0 && blockGrid[xEnnemi][yEnnemi-1].traverser)
        yEnnemi --;
        console.log("xEnnemi =" + xEnnemi);
        console.log("yEnnemi =" + yEnnemi);
+       return yEnnemi;
          break;
        case "right":
        if (xEnnemi< H_GRID && blockGrid[xEnnemi + 1][yEnnemi].traverser)
        xEnnemi ++;  //(x < H_GRID-1 && blockGrid[x+1][y].traverser)
        console.log("xEnnemi =" + xEnnemi);
        console.log("yEnnemi =" + yEnnemi);
+       return xEnnemi;
          break;
        case "up":
        if (yEnnemi< V_GRID && blockGrid[xEnnemi][yEnnemi + 1].traverser)
        yEnnemi ++;
        console.log("xEnnemi =" + xEnnemi);
        console.log("yEnnemi =" + yEnnemi);
+       return yEnnemi;
          break;
        case "down":
        if (xEnnemi > 0 && blockGrid[xEnnemi-1][yEnnemi].traverser)
        xEnnemi --;
        console.log("xEnnemi =" + xEnnemi);
        console.log("yEnnemi =" + yEnnemi);
-
+       return yEnnemi;
          break;
      }
      styleEnnemi.marginLeft = String(xEnnemi * GRID_SIZE) + 'px';
@@ -72,4 +59,3 @@ function loop(){  //60x par seconde
    window.requestAnimationFrame(loop);
  }
  window.requestAnimationFrame(loop);
-}

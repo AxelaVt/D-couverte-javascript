@@ -1,23 +1,31 @@
 
-
-
-div{
-  width: 800px;
-  height: 800px;
-  background-color: #00ffe2;
-  position:relative;
-  margin-left: auto;
-  margin-right: auto;
-  border: thick double #32a1ce;
-
+div.container-fluid {
+  /* background-image: url(img/fond.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+  /* opacity: 0.5; */
+  background-size: cover;
+  display: flex;
+  /* padding : 0; */
 }
 
+#plateau{
+  height: 100wh;
+  width: auto;
+  position: relative;
+  justify-content: flex-end;
+}
 #pion{
   width: 40px;
   height: 40px;
-  background-color: black;
-  margin:0;
-  position:absolute;
-  top:0;
-  left:0;
+  top: 0px;
+  left: 0px;
+  margin = 0;
+  position: absolute;
+  z-index: 100;
+}
+
+.ennemi{
+  /* top: 0px;
+  left: 0px; */
 }

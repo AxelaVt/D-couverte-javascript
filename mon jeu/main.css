@@ -1,0 +1,42 @@
+
+
+
+#plateau {
+  width: 800px;
+  height: 800px;
+  background-color: #00ffe2;
+  position:relative;
+  margin-left: auto;
+  margin-right: auto;
+  border: thick double #32a1ce;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  padding:20px;
+}
+
+#pion{
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  margin:0;
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+/*.buisson{
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  margin:20px;
+
+}*/
+
+.buisson,
+#buisson {
+    position:absolute;
+    width:40px;
+    height:40px;
+    background-color:#d2fcd9;
+}

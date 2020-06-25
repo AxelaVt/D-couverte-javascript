@@ -10,9 +10,9 @@ var plateau = document.getElementById('plateau'); 	// variables objet
 	document.onkeydown = function(event)
 	{
 		if (event.keyCode == 37) gauche();
-		if (event.keyCode == 39) droite() ;
+		if (event.keyCode == 39) droite();
 		if (event.keyCode == 38) haut();
-		if (event.keyCode == 40) bas() ;
+		if (event.keyCode == 40) bas();
 	} // fin fonction
 
 	// quatre fonctions de déplacement

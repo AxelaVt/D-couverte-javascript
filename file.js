@@ -48,18 +48,22 @@ for(var i = 0; i < H_GRID; i++){
     }
   }
   console.log (blockGrid);
-  //console.log (blockGrid[0][0].block.traverser);
   //blocks qui resteront en vert
   blockGrid[0][0].style.backgroundColor = "#8bc34a";
-  //blockGrid[0][0].block.traverser = "true";
+  blockGrid[0][0].traverser = true;
+  blockGrid[0][0].setAttribute("class", "floor");
   blockGrid[1][1].style.backgroundColor = "#8bc34a";
-  //blockGrid[1][1].block.traverser = true;
+  blockGrid[1][1].setAttribute("class", "floor");
+  blockGrid[1][1].traverser = true;
   blockGrid[1][0].style.backgroundColor = "#8bc34a";
-  //blockGrid[1][0].block.traverser = true;
+  blockGrid[1][0].setAttribute("class", "floor");
+  blockGrid[1][0].traverser = true;
   blockGrid[0][1].style.backgroundColor = "#8bc34a";
-  //blockGrid[0][1].block.traverser = true;
-  //blockGrid[H_GRID - 1][1].style.backgroundColor = "#8bc34a";
-  //blockGrid[H_GRID - 1][1].traverser = true;
+  blockGrid[0][1].setAttribute("class", "floor");
+  blockGrid[0][1].traverser = true;
+  blockGrid[H_GRID - 1][1].style.backgroundColor = "#8bc34a";
+  blockGrid[H_GRID - 1][1].setAttribute("class", "floor");
+  blockGrid[H_GRID - 1][1].traverser = true;
 
 
   function random100() {
