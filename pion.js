@@ -50,7 +50,7 @@ document.onkeydown = function(event){
   bomb.style.left = String(x) + 'px';
   bomb.style.top = String(y) + 'px';
   console.log(bomb.style.left);
-  console.log( "top "+ bomb.style.top);
+  console.log( "top" + bomb.style.top);
 }
 
 // fonction creation de la bomb
@@ -69,12 +69,4 @@ function createBomb(){
   document.getElementById("plateau").appendChild(bomb);
   //styleBomb.zIndex = "100";
   //bomb.explode = -1;
-}
-
-function explodeBomb() {
-  if (document.getElementById("bomb")) {
-    document.getElementById("bomb").style.backgroundImage = "url('img/mettre image')";
-  }
-
-  setTimeout(disparitionBombe, 1500);
 }

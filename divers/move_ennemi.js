@@ -1,6 +1,9 @@
 
 // déplacement des ennemis
 
+var frame = 0;
+function loop(){  //60x par seconde
+if (frame === 60) {
 var ennemi = document.querySelectorAll('div.ennemi');
 //var ennemi = document.querySelectorAll('div#ennemi');
 console.log(ennemi);
@@ -14,10 +17,6 @@ for(i = 0; i < ennemi.length; i++ ){
    console.log(ennemi[i].direction);
    var direction = ennemi[i].direction;
 
-function loop(){  //60x par seconde
-
- if (frame === 60) {
-   var frame = 0;
      switch(direction){
        case "left":
        if (yEnnemi> 0 && blockGrid[xEnnemi][yEnnemi-1].traverser)
@@ -45,10 +44,10 @@ function loop(){  //60x par seconde
 
          break;
      }
-     //styleEnnemi.marginLeft = String(xEnnemi * GRID_SIZE) + 'px';
-     //styleEnnemi.marginTop = String(yEnnemi * GRID_SIZE) + 'px';
-     styleEnnemi.left = String(xEnnemi * GRID_SIZE) + 'px';
-     styleEnnemi.top = String(yEnnemi * GRID_SIZE) + 'px';
+     ennemi.style.marginLeft = String(xEnnemi * GRID_SIZE) + 'px';
+     ennemi.style.marginTop = String(yEnnemi * GRID_SIZE) + 'px';
+     // ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
+     // ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';
 
      let random = random100();
      console.log(random);
@@ -64,12 +63,15 @@ function loop(){  //60x par seconde
      if (random > 75){
        direction = "down";
      }
+     ennemi.xEnnemi = xEnnemi;
+     ennemi.yEnnemi = yEnnemi;
+     ennemi.direction = direction;
+     blockGrid[xEnnemi][yEnnemi].traverser = false;
 
-     
    }
    frame = 0;
-   }
-   frame++;
-   window.requestAnimationFrame(loop);
- }
+  }
+ frame++;
  window.requestAnimationFrame(loop);
+}
+window.requestAnimationFrame(loop);
