@@ -12,8 +12,7 @@ for(i = 0; i < ennemi.length; i++ ){
    console.log("xEnnemi =" + xEnnemi);
    console.log("yEnnemi =" + yEnnemi);
    console.log(ennemi[i].direction);
-
-var direction = ennemi[i].direction;
+   var direction = ennemi[i].direction;
 
 function loop(){  //60x par seconde
 
@@ -46,10 +45,10 @@ function loop(){  //60x par seconde
 
          break;
      }
-     styleEnnemi.marginLeft = String(xEnnemi * GRID_SIZE) + 'px';
-     styleEnnemi.marginTop = String(yEnnemi * GRID_SIZE) + 'px';
-     // styleEnnemi.left = String(xEnnemi * GRID_SIZE) + 'px';
-     // styleEnnemi.top = String(yEnnemi * GRID_SIZE) + 'px';
+     //styleEnnemi.marginLeft = String(xEnnemi * GRID_SIZE) + 'px';
+     //styleEnnemi.marginTop = String(yEnnemi * GRID_SIZE) + 'px';
+     styleEnnemi.left = String(xEnnemi * GRID_SIZE) + 'px';
+     styleEnnemi.top = String(yEnnemi * GRID_SIZE) + 'px';
 
      let random = random100();
      console.log(random);
@@ -65,11 +64,12 @@ function loop(){  //60x par seconde
      if (random > 75){
        direction = "down";
      }
-     console.log(direction);
+
+     
+   }
    frame = 0;
    }
    frame++;
    window.requestAnimationFrame(loop);
  }
  window.requestAnimationFrame(loop);
-}

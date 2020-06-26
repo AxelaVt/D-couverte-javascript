@@ -50,7 +50,7 @@ document.onkeydown = function(event){
   bomb.style.left = String(x) + 'px';
   bomb.style.top = String(y) + 'px';
   console.log(bomb.style.left);
-  console.log( "top "+bomb.style.top);
+  console.log( "top "+ bomb.style.top);
 }
 
 // fonction creation de la bomb

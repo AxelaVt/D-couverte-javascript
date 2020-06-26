@@ -24,11 +24,11 @@
   </div>
     <script type="text/javascript" src="pion.js"></script>
     <script type="text/javascript" src="file.js"></script>
-    <script type="text/javascript" src="ennemi.js"></script>
-    
+    <script type="text/javascript" src="ennemi1.js"></script>
+
     <!-- <script type="text/javascript" src="ennemis.js"></script> -->
-    <script type="text/javascript" src="move_ennemi.js"></script>
-    <script type="text/javascript" src="bombe.js"></script>
+    <script type="text/javascript" src="move_ennemi1.js"></script>
+    
 
   </body>
 </html>
