@@ -1,6 +1,6 @@
 
 var blockEnnemi = [];
-for(var i = 0; i < 10; i++){  //10 = nb d'ennemi à créer
+for(var i = 0; i < 20; i++){  //10 = nb d'ennemi à créer
     let ennemi = document.createElement("div");
     posX = 0;
     posY = 0;

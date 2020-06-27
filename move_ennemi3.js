@@ -17,70 +17,54 @@ function loop() {
         console.log(yEnnemi)
           if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser)
             yEnnemi--;
-          if ((yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser)){
+          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser)
             possibleDirection.push("down", "up");
-          }
-          if ((xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)) {
+          if (xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
             possibleDirection.push("right");
-          }
-          if ((xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)) {
+          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
             possibleDirection.push("left");
-          }
-
           break;
 
         case "right":
         console.log(xEnnemi)
           if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
             xEnnemi++;
-          if ((xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)){
+          if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
             possibleDirection.push("right", "left");
-          }
-          if ((yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)){
+          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
             possibleDirection.push("down");
-          }
-          if ((yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)) {
+          if (yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)
             possibleDirection.push("up");
-          }
           break;
 
         case "down":
           console.log(yEnnemi)
           if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
             yEnnemi++;
-            if ((yEnnemi < V_GRID-1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)){
-              possibleDirection.push("down", "up");
-            }
-            if ((xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)) {
-              possibleDirection.push("right");
-            }
-            if ((xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)) {
-              possibleDirection.push("left");
-            }
+          if (yEnnemi < V_GRID-1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
+            possibleDirection.push("down", "up");
+          if (xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
+            possibleDirection.push("right");
+          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
+            possibleDirection.push("left");
           break;
 
         case "left":
-        console.log(xEnnemi)
+        console.log(xEnnemi);
           if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
             xEnnemi--;
-          if ((xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)){
+          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
             possibleDirection.push("right", "left");
-          }
-          if ((yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)){
+          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
             possibleDirection.push("down");
-          }
-          if ((yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)) {
+          if (yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)
             possibleDirection.push("up");
-          }
           break;
       }
        ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
        ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';
-      // ennemi.style.marginLeft = String(xEnnemi * GRID_SIZE) + 'px';
-      // ennemi.style.marginTop = String(yEnnemi * GRID_SIZE) + 'px';
 
-
-      console.log(possibleDirection);
+       console.log(possibleDirection);
        let random = Math.round(Math.random()*possibleDirection.length);
        direction = possibleDirection[random];
       //
@@ -108,12 +92,10 @@ function loop() {
       //   direction = "right";
       // }
 
-      ennemi.posX = xEnnemi
-      ennemi.posY = yEnnemi
-      ennemi.direction = direction
+      ennemi.posX = xEnnemi;
+      ennemi.posY = yEnnemi;
+      ennemi.direction = direction;
       blockGrid[xEnnemi][yEnnemi].traverser = false ;
-
-
     }
 
     frame = 0;
