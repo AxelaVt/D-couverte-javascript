@@ -13,11 +13,11 @@ function loop() {
       //possibleDirection.push('right');
 
       switch (direction) {
-        case "up":
+        case "up":  //on veut monter donc diminuer y
         console.log(yEnnemi)
-          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser)
+          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser) // si la coordonnée en y est > 0 et que la position de la case de dessus est traversable, on décremente y (position du coin supérieur gauche)
             yEnnemi--;
-          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser)
+          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi - 1].traverser)//si traversable,
             possibleDirection.push("down", "up");
           if (xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
             possibleDirection.push("right");
@@ -64,7 +64,7 @@ function loop() {
        ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
        ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';
 
-       console.log(possibleDirection);
+       //console.log(possibleDirection);
        let random = Math.round(Math.random()*possibleDirection.length);
        direction = possibleDirection[random];
       //

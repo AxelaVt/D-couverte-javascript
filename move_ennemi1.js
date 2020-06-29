@@ -15,7 +15,7 @@ if (frame === 60) {
     blockGrid[xEnnemi][yEnnemi].traverser = true;
 
       switch(direction){
-         case "left":
+         case "up":
          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi-1].traverser)
          yEnnemi --;
          // console.log("xEnnemi =" + xEnnemi);
@@ -27,13 +27,13 @@ if (frame === 60) {
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
            break;
-         case "up":
+         case "down":
          if (yEnnemi < V_GRID && blockGrid[xEnnemi][yEnnemi + 1].traverser)
          yEnnemi ++;
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
            break;
-         case "down":
+         case "left":
          if (xEnnemi > 0 && blockGrid[xEnnemi-1][yEnnemi].traverser)
          xEnnemi --;
          // console.log("xEnnemi =" + xEnnemi);

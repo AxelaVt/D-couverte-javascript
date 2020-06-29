@@ -26,6 +26,31 @@ div.container-fluid {
 }
 
 .ennemi{
-  /* top: 0px;
-  left: 0px; */
+
+}
+
+.floor{
+  background-color: #7ff709;
+
+}
+
+.breakableWall{
+  background-image: url("img/woodwall.png");
+  background-size: contain;
+}
+
+.breakableWall.fire{
+  background-image: url('img/feu.gif');
+  background-size: contain;
+}
+
+#bomb{
+  background-image: url('img/bombbird.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#bomb.explode{
+  background-image: url(img/explosion.gif);
 }

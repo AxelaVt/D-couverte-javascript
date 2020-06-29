@@ -19,38 +19,50 @@ for(var i = 0; i < H_GRID; i++){
     block.style.height = "40px";
     block.style.display = "flex";
     block.style.position = "absolute";
-    // !(i >= 0 && i <= 1 && j >= 0 && j <= 1 || i >= (H_GRID - 2)  && i < H_GRID && j >= 0 && j <= 1 || i >= 0  && i <= 1 && j >= (V_GRID - 2) && j < V_GRID || i >= (H_GRID - 2)  && i < H_GRID && j >= (V_GRID - 2) && j < V_GRID)
 
     let random = random100();
-    block.style.backgroundColor = "#8bc34a";
-    block.setAttribute("class", "floor"); //sinon fond en vert on peut le traverser
+    //block.style.backgroundColor = "#8bc34a";
+    block.setAttribute("class", "floor");
     block.traverser = true;
 
-    if (random < 10 && !(i >= 0 && i <= 1 && j >= 0 && j <= 1 || i >= (H_GRID - 2)  && i < H_GRID && j >= 0 && j <= 1 || i >= 0  && i <= 1 && j >= (V_GRID - 2) && j < V_GRID || i >= (H_GRID - 2)  && i < H_GRID && j >= (V_GRID - 2) && j < V_GRID)){
-      //block.style.backgroundColor = "black";  //si supérieur à valeur, passer le fond en noir,c'est un mur on ne peut pas le traverser
+    if (random < 12 && !(i >= 0 && i <= 1 && j >= 0 && j <= 1 || i >= (H_GRID - 2)  && i < H_GRID && j >= 0 && j <= 1 || i >= 0  && i <= 1 && j >= (V_GRID - 2) && j < V_GRID || i >= (H_GRID - 2)  && i < H_GRID && j >= (V_GRID - 2) && j < V_GRID)) //10
+    {
+
       block.style.backgroundImage = 'url("img/wall.png")';
       block.style.backgroundSize = 'contain';
       block.setAttribute("class", "wall");
       block.traverser = false;
       block.style.zIndex = '90';
       }
-      else if (random > 90 && !(i >= 0 && i <= 1 && j >= 0 && j <= 1 || i >= (H_GRID - 2)  && i < H_GRID && j >= 0 && j <= 1 || i >= 0  && i <= 1 && j >= (V_GRID - 2) && j < V_GRID || i >= (H_GRID - 2)  && i < H_GRID && j >= (V_GRID - 2) && j < V_GRID))
+      else if (random > 88 && !(i >= 0 && i <= 1 && j >= 0 && j <= 1 || i >= (H_GRID - 2)  && i < H_GRID && j >= 0 && j <= 1 || i >= 0  && i <= 1 && j >= (V_GRID - 2) && j < V_GRID || i >= (H_GRID - 2)  && i < H_GRID && j >= (V_GRID - 2) && j < V_GRID))  //90
       {
-      block.style.backgroundImage = 'url("img/woodwall.png")';
-      block.style.backgroundSize = 'contain';
+      //block.style.backgroundImage = 'url("img/woodwall.png")';
+      //block.style.backgroundSize = 'contain';
       block.style.zIndex = '90';
       block.setAttribute("class", "breakableWall");
       block.traverser = false;
       }
 
 
-      block.style.marginLeft = (i * GRID_SIZE).toString()+"px";  //  GRID_SIZE = 40
-      block.style.marginTop = (j * GRID_SIZE).toString()+"px";
+      block.style.left = (i * GRID_SIZE).toString()+"px";  //  GRID_SIZE = 40
+      block.style.top = (j * GRID_SIZE).toString()+"px";
       document.getElementById("plateau").appendChild(block);
       blockGrid[i].push(block);
     }
   }
-  //console.log (blockGrid);
+
+blockGrid[10][10].style.backgroundImage = "url('img/cagebd.jpg')";
+blockGrid[10][10].traverser = false;
+blockGrid[10][10].ClassName = "birdCageClosed";
+blockGrid[10][9].style.backgroundImage = "url('img/cagehd.jpg')";
+blockGrid[10][9].traverser = false;
+blockGrid[10][9].ClassName = "birdCageClosed";
+blockGrid[9][9].style.backgroundImage = "url('img/cagehg.jpg')";
+blockGrid[9][9].traverser = false;
+blockGrid[9][9].ClassName = "birdCageClosed";
+blockGrid[9][10].style.backgroundImage = "url('img/cagebg.jpg')";
+blockGrid[9][10].traverser = false;
+blockGrid[9][10].ClassName = "birdCageClosed";
 
   function random100() {
     return Math.floor(Math.random() * 100);
