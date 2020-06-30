@@ -25,7 +25,20 @@ div.container-fluid {
   z-index: 100;
 }
 
+#pion.explode{
+  background-image: url('img/explosion.gif');
+}
+
 .ennemi{
+background-image: url('img/blackbird.png');
+background-size: contain;
+background-position: center;
+}
+
+.ennemi.dead{
+background-image: url('img/explosion.gif');
+background-size: contain;
+background-position: center;
 
 }
 
@@ -37,11 +50,15 @@ div.container-fluid {
 .breakableWall{
   background-image: url("img/woodwall.png");
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .breakableWall.fire{
   background-image: url('img/feu.gif');
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #bomb{
@@ -52,5 +69,5 @@ div.container-fluid {
 }
 
 #bomb.explode{
-  background-image: url(img/explosion.gif);
+  background-image: url('img/explosion.gif');
 }

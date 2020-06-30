@@ -1,10 +1,9 @@
 
 
 var pion = document.getElementById('pion');
-  var stylePion = pion.style;
-  stylePion.backgroundImage = 'url("img/pinkbird.png")';
-  stylePion.backgroundPosition = "center";
-  var x = pion.offsetLeft ;
+  pion.style.backgroundImage = 'url("img/pinkbird.png")';
+  pion.style.backgroundPosition = "center";
+  var x = pion.offsetLeft;
   var y = pion.offsetTop;
 
 
@@ -13,8 +12,8 @@ document.onkeydown = function(event){
   var event = event || window.event,
   keyCode = event.keyCode;
  console.log("code : " + keyCode);
- // console.log(x);
- // console.log(y);
+ console.log(x);
+ console.log(y);
   switch(keyCode){
     case 38: // top
       if (y > 0 && blockGrid[x / GRID_SIZE][y / GRID_SIZE -1].traverser)
@@ -40,7 +39,7 @@ document.onkeydown = function(event){
       // if (x > 0 && blockGrid[x-1][y].traverser)
       // x--; //
       break;
-    case 66: // touche B
+    case 32: // touche espace
       createBomb();
       setTimeout(explodeBomb, 3000);
 
@@ -50,8 +49,8 @@ document.onkeydown = function(event){
       return;
   }
 
-  stylePion.left = String(x) + 'px';
-  stylePion.top = String(y) + 'px';
+  pion.style.left = String(x) + 'px';
+  pion.style.top = String(y) + 'px';
 
 }
 
@@ -74,7 +73,7 @@ function createBomb(){
   blockGrid[x/40][y/40].traverser = false;
   var positionBomb = [];
   positionBomb.push(pos);
-  console.log(positionBomb);
+  console.log("position bombe =" +positionBomb);
   console.log(bomb.style.left);
   console.log( "top" + bomb.style.top);
 }
@@ -85,49 +84,99 @@ function explodeBomb() {
     let bomb = document.getElementById("bomb");
     bomb.classList.add("explode");
     //bomb.style.backgroundImage = "url('img/explosion.gif')";
-    console.log(bomb);
     let xB = (bomb.style.left.slice(0,-2))/GRID_SIZE;
     let yB = (bomb.style.top.slice(0,-2))/GRID_SIZE;
-    console.log(xB);
-    console.log(yB);
-    positionArround = [blockGrid[xB-1][yB-1], blockGrid[xB][yB-1], blockGrid[xB+1][yB-1], blockGrid[xB+1][yB], blockGrid[xB-1][yB], blockGrid[xB-1][yB+1], blockGrid[xB][yB+1], blockGrid[xB+1][yB+1]];
+    console.log("xb = "+ xB);
+    console.log("yb = "+ yB);
 
+    if ((xB !==0) && (yB !==0)){
+      positionArround = [blockGrid[xB-1][yB-1], blockGrid[xB][yB-1], blockGrid[xB+1][yB-1], blockGrid[xB+1][yB], blockGrid[xB-1][yB], blockGrid[xB-1][yB+1], blockGrid[xB][yB+1], blockGrid[xB+1][yB+1]];
+    }
+    if (xB === 0){
+    positionArround = [blockGrid[xB][yB-1], blockGrid[xB+1][yB-1], blockGrid[xB+1][yB], blockGrid[xB][yB+1], blockGrid[xB+1][yB+1]];
+    }
+    if (yB === 0){
+      positionArround = [blockGrid[xB+1][yB], blockGrid[xB-1][yB], blockGrid[xB-1][yB+1], blockGrid[xB][yB+1], blockGrid[xB+1][yB+1]];
+    }
+    if (xB === H_GRID-1){
+      positionArround = [blockGrid[xB-1][yB-1], blockGrid[xB][yB-1], blockGrid[xB-1][yB], blockGrid[xB-1][yB+1], blockGrid[xB][yB+1]];
+    }
+    if (yB === V_GRID-1){
+      positionArround = [blockGrid[xB-1][yB-1], blockGrid[xB][yB-1], blockGrid[xB+1][yB-1], blockGrid[xB+1][yB], blockGrid[xB-1][yB]];
+    }
+
+    // vérifie si des ennemis ou le pion sont placés dans les 5 ou 8 cases autour de la bombe
     for (var i = 0; i < positionArround.length; i++) {
-      // for (var j = 0; j < blockEnnemi.length; j++) {
-      //   //console.log(blockEnnemi[j]);
-      // }
-      // //console.log (positionArround[i].className);
-      // if (positionArround[i].left === blockEnnemi[j].left && positionArround[i].top === blockEnnemi[j].top ){
-      //   positionArround[i].style.backgroundImage = "url('img/birddead.png') ";
-      //   setTimeout(timer, 3000);
-      //   positionArround[i].style.backgroundColor = "#7ff709";
-      //   positionArround[i].traverser = true;
+      for (var j = 0; j < blockEnnemi.length; j++) {
 
-       if (positionArround[i].className === "breakableWall"){
-          positionArround[i].classList.add("fire");
-          setTimeout(timer, 5000);
-          positionArround[i].classList.remove("breakableWall");
-          positionArround[i].classList.remove("fire");
-          positionArround[i].classList.add("floor");
-          positionArround[i].traverser = "true";
+        if (positionArround[i].style.left.slice(0,-2)/GRID_SIZE === blockEnnemi[j].style.left.slice(0,-2)/GRID_SIZE && positionArround[i].style.top.slice(0,-2)/GRID_SIZE === blockEnnemi[j].style.top.slice(0,-2)/GRID_SIZE )
+        {
+        console.log(blockEnnemi[j]);
+        blockEnnemi[j].classList.add("dead");
+        setTimeout(deleteEnnemi(j), 3000);
+        }
+        //si le pion est trop prêt de la bombe
+        if (x/GRID_SIZE === positionArround[i].style.left.slice(0,-2)/GRID_SIZE && y/GRID_SIZE === positionArround[i].style.top.slice(0,-2)/GRID_SIZE ) {
+          document.getElementById("pion");
+          pion.classList.add("explode");
+          pion.classList.add("floor");
+          pion.removeAttribute("id");
+          setTimeout(gameOver(), 5000);
+        }
       }
     }
+    // vérif toutes les positions autour de la bombe
+    for (var i = 0; i < positionArround.length; i++) {
+     if (positionArround[i].className === "breakableWall"){
+        positionArround[i].classList.add("fire");
+        setTimeout(deleteWall(i), 5000);
+      }
+    }
+    setTimeout(deleteBomb, 2000);
   }
-
-  setTimeout(deleteBomb, 2000);
 }
-
 
 function deleteBomb() {
-    blockGrid[xb][yb].traverser = true;
-    //document.getElementById("bomb").remove();
-    bomb.classList.remove("explode");
-    bomb.classList.add("floor");
-    bomb.id.remove("bomb");
+  let xB = (bomb.style.left.slice(0,-2))/GRID_SIZE;
+  let yB = (bomb.style.top.slice(0,-2))/GRID_SIZE;
+  blockGrid[xB][yB].traverser = true;
+  document.getElementById("bomb");
+  bomb.classList.remove("explode");
+  bomb.classList.add("floor");
+  bomb.removeAttribute("id");
+  }
+
+  function deleteWall(i) {
+    positionArround[i].classList.remove("breakableWall");
+    positionArround[i].classList.remove("fire");
+    setTimeout(timer(), 5000);
+    positionArround[i].classList.add("floor");
+    positionArround[i].traverser = true;
+  }
+
+  function deleteEnnemi(j) {
+    blockEnnemi[j].classList.remove("ennemi");
+    blockEnnemi[j].classList.remove("dead");
+    blockEnnemi[j].removeAttribute("id");
+    setTimeout(timer(), 5000);
+    blockEnnemi[j].classList.add("floor");
+    blockEnnemi[j].traverser = true;
+  }
+
+  function gameOver(){
+
+    window.alert("Game over");
+
   }
 
 
 
-function timer() {
-return;
-}
+
+  function timer() {
+    var counter = 10000;
+   if(counter !== 0)
+   counter--;
+    else {
+       finish();
+     }
+   }

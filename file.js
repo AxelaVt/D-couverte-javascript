@@ -64,6 +64,7 @@ blockGrid[9][10].style.backgroundImage = "url('img/cagebg.jpg')";
 blockGrid[9][10].traverser = false;
 blockGrid[9][10].ClassName = "birdCageClosed";
 
-  function random100() {
-    return Math.floor(Math.random() * 100);
-  }
+
+function random100() {
+  return Math.floor(Math.random() * 100);
+}

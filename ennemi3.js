@@ -16,8 +16,8 @@ for(var i = 0; i < 10; i++){  //10 = nb d'ennemi à créer
     ennemi.style.height = "40px";
     ennemi.style.display = "flex";
     ennemi.style.position = "absolute";
-    ennemi.style.backgroundImage = 'url("img/blackbird.png")';
-    ennemi.style.backgroundPosition = "center";
+    //ennemi.style.backgroundImage = 'url("img/blackbird.png")';
+    //ennemi.style.backgroundPosition = "center";
     ennemi.setAttribute("class", "ennemi");
     ennemi.style.zIndex = 100;
     //ennemi.setAttribute("class", "floor");
