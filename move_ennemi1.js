@@ -1,7 +1,7 @@
 // déplacement des ennemis
 var frame = 0;
 function loop(){  //60x par seconde
-if (frame === 100) {
+if (frame === 60) {
   for(i = 0; i < blockEnnemi.length; i++ ){
     let ennemi = blockEnnemi[i];
     let xEnnemi = ennemi.posX;
@@ -39,7 +39,6 @@ if (frame === 100) {
          // console.log("yEnnemi =" + yEnnemi);
            break;
       }
-      
 
       ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
       ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';

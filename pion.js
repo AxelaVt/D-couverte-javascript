@@ -51,6 +51,19 @@ document.onkeydown = function(event){
       return;
   }
 
+  // verif si un ennemi vient sur le pion
+  console.log(pion.style.top.slice(0,-2) + "  ennemi " + blockEnnemi[i].style.left.slice(0,-2));
+  console.log(pion.style.left.slice(0,-2) + "  ennemi " + blockEnnemi[i].style.top.slice(0,-2));
+  for (var i = 0; i < blockEnnemi.length; i++) {
+     if (pion.style.top.slice(0,-2) === blockEnnemi[i].style.left.slice(0,-2) && pion.style.left.slice(0,-2) == blockEnnemi[i].style.top.slice(0,-2)) {
+       pion.style.backgroundImage = 'url("img/piondead.png")';
+       setTimeout(timer(),1000);
+       document.getElementById('pion').remove();
+       setTimeout(gameOver(),1000);
+       break;
+     }
+   }
+
   pion.style.left = String(x) + 'px';
   pion.style.top = String(y) + 'px';
 
@@ -220,7 +233,7 @@ function deleteBomb() {
   }
 
   function timer() {
-    var counter = 1000;
+    var counter = 10;
    if(counter !== 0)
    counter--;
     else {
