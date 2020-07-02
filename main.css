@@ -17,6 +17,7 @@ div.container-fluid {
 }
 #pion{
   width: 40px;
+
   height: 40px;
   top: 0px;
   left: 0px;
@@ -33,6 +34,7 @@ div.container-fluid {
 background-image: url('img/blackbird.png');
 background-size: contain;
 background-position: center;
+
 }
 
 .ennemi.dead{
@@ -62,7 +64,7 @@ background-position: center;
 }
 
 #bomb{
-  background-image: url('img/bombbird.png');
+  background-image: url('img/birdbomb.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

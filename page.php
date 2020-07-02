@@ -23,9 +23,8 @@
   </div>
     <script type="text/javascript" src="file.js"></script>
     <script type="text/javascript" src="pion.js"></script>
-
     <script type="text/javascript" src="ennemi3.js"></script>
-    <script type="text/javascript" src="move_ennemi3.js"></script>
+    <script type="text/javascript" src="move_ennemi1.js"></script>
 
 
 

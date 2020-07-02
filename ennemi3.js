@@ -26,7 +26,6 @@ for(var i = 0; i < 10; i++){  //10 = nb d'ennemi à créer
     ennemi.posY = posY;
     ennemi.direction = "right";
 
-
     blockGrid[posX][posY].traverser = false;
     ennemi.style.left = (posX*GRID_SIZE).toString()+"px";
     ennemi.style.top = (posY*GRID_SIZE).toString()+"px";

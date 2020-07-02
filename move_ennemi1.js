@@ -1,67 +1,77 @@
 // déplacement des ennemis
 var frame = 0;
 function loop(){  //60x par seconde
-if (frame === 60) {
-  //let ennemi = document.querySelectorAll('div.ennemi');
+if (frame === 100) {
   for(i = 0; i < blockEnnemi.length; i++ ){
-    //console.log(blockEnnemi);
     let ennemi = blockEnnemi[i];
     let xEnnemi = ennemi.posX;
     let yEnnemi = ennemi.posY;
-
     let direction = ennemi.direction;
-    // console.log("xEnnemi =" + xEnnemi);
-    // console.log("yEnnemi =" + yEnnemi);
     blockGrid[xEnnemi][yEnnemi].traverser = true;
 
       switch(direction){
          case "up":
          if (yEnnemi > 0 && blockGrid[xEnnemi][yEnnemi-1].traverser)
          yEnnemi --;
+         ennemi.style.backgroundImage = "url('img/blackbird.png')";
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
            break;
          case "right":
-         if (xEnnemi < H_GRID && blockGrid[xEnnemi + 1][yEnnemi].traverser)
-         xEnnemi ++;  //(x < H_GRID-1 && blockGrid[x+1][y].traverser)
+         if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
+         xEnnemi ++; 
+         ennemi.style.backgroundImage = "url('img/blackbirdRight.png')";
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
            break;
          case "down":
-         if (yEnnemi < V_GRID && blockGrid[xEnnemi][yEnnemi + 1].traverser)
+         if (yEnnemi < V_GRID-1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
          yEnnemi ++;
+         ennemi.style.backgroundImage = "url('img/blackbird.png')";
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
            break;
          case "left":
          if (xEnnemi > 0 && blockGrid[xEnnemi-1][yEnnemi].traverser)
          xEnnemi --;
+         ennemi.style.backgroundImage = "url('img/blackbirdLeft.png')"
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
            break;
       }
-       ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
-       ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';
+     // // pion meurt si ennemi vient sur lui
+     // if (pion.style.left == xEnnemi * GRID_SIZE && pion.style.left == yEnnemi * GRID_SIZE) {
+     //     console.log(pion.style.left);
+     //     console.log(pion.style.top);
+     //     pion.style.backgroundImage = 'url("img/piondead.png")';
+     //     document.getElementById('pion').remove();
+     //     setTimeout(gameOver(),1000);
+     //     document.location.reload(true);
+     //  }
+     //    break;
 
+      ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
+      ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';
 
        let random = random100();
-       //console.log(random);
-       if (0 < random < 25 ) {
-         direction = "left";
+
+       if (random < 25) {
+       direction = "left";
        }
-       if (25 <= random < 50 ){
+       if (random >= 25 && random < 50) {
          direction = "right";
        }
-       if (50 <= random < 75 ){
+       if (random >= 50 && random < 75) {
          direction = "up";
        }
-       if (random > 75){
+       if (random > 75) {
          direction = "down";
        }
-       ennemi.xEnnemi = xEnnemi ;
-       ennemi.yEnnemi = yEnnemi ;
+
+       ennemi.posX = xEnnemi ;
+       ennemi.posY = yEnnemi ;
        ennemi.direction = direction;
-       blockGrid[xEnnemi][yEnnemi].traverser = false ;
+       blockGrid[xEnnemi][yEnnemi].traverser = true ;
      }
    frame = 0;
    }

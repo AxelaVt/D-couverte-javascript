@@ -27,38 +27,35 @@ function loop() {
 
         case "right":
         console.log(xEnnemi)
-          if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
+          if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser) //si la valeur de x <20 et que la case à droite est traversable, on augmente d'une case à droite
             xEnnemi++;
-          if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
-            possibleDirection.push("right", "left");
-          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
-            possibleDirection.push("down");
-          if (yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)
+            possibleDirection.push("right", "left"); //si on ne peut pas aller right ou left
+          if (yEnnemi < V_GRID-1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)//si la case de dessus est traversable
             possibleDirection.push("up");
+          if (yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)// si la case du sessous est traversable
+            possibleDirection.push("down");
           break;
 
         case "down":
           console.log(yEnnemi)
-          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
+          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser) // case du dessus est traversable
             yEnnemi++;
-          if (yEnnemi < V_GRID-1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
             possibleDirection.push("down", "up");
-          if (xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
+          if (xEnnemi < H_GRID - 1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)// case à droite traversable
             possibleDirection.push("right");
-          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
+          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser) //case à gauche traversable
             possibleDirection.push("left");
           break;
 
         case "left":
         console.log(xEnnemi);
-          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
+          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser) // case à gauche traversable
             xEnnemi--;
-          if (xEnnemi > 0 && blockGrid[xEnnemi - 1][yEnnemi].traverser)
             possibleDirection.push("right", "left");
-          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser)
-            possibleDirection.push("down");
-          if (yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)
+          if (yEnnemi < V_GRID - 1 && blockGrid[xEnnemi][yEnnemi + 1].traverser) // case du dessus
             possibleDirection.push("up");
+          if (yEnnemi > 0 && blockGrid[xEnnemi ][yEnnemi - 1].traverser)
+            possibleDirection.push("down");
           break;
       }
        ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
@@ -67,6 +64,7 @@ function loop() {
        //console.log(possibleDirection);
        let random = Math.round(Math.random()*possibleDirection.length);
        direction = possibleDirection[random];
+
       //
       // if (random < 25 && direction != "left" ) {
       //   direction = "left";
