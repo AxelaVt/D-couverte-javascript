@@ -19,7 +19,7 @@ if (frame === 100) {
            break;
          case "right":
          if (xEnnemi < H_GRID-1 && blockGrid[xEnnemi + 1][yEnnemi].traverser)
-         xEnnemi ++; 
+         xEnnemi ++;
          ennemi.style.backgroundImage = "url('img/blackbirdRight.png')";
          // console.log("xEnnemi =" + xEnnemi);
          // console.log("yEnnemi =" + yEnnemi);
@@ -39,16 +39,7 @@ if (frame === 100) {
          // console.log("yEnnemi =" + yEnnemi);
            break;
       }
-     // // pion meurt si ennemi vient sur lui
-     // if (pion.style.left == xEnnemi * GRID_SIZE && pion.style.left == yEnnemi * GRID_SIZE) {
-     //     console.log(pion.style.left);
-     //     console.log(pion.style.top);
-     //     pion.style.backgroundImage = 'url("img/piondead.png")';
-     //     document.getElementById('pion').remove();
-     //     setTimeout(gameOver(),1000);
-     //     document.location.reload(true);
-     //  }
-     //    break;
+      
 
       ennemi.style.left = String(xEnnemi * GRID_SIZE) + 'px';
       ennemi.style.top = String(yEnnemi * GRID_SIZE) + 'px';
