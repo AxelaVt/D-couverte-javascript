@@ -60,24 +60,21 @@ document.onkeydown = function(event){
 // fonction creation de la bombe
 function createBomb(){
   var bomb = document.createElement("div");
-  var styleBomb = bomb.style;
   bomb.id = "bomb";
-  styleBomb.width = GRID_SIZE + "px";
-  styleBomb.height = GRID_SIZE + "px";
-  styleBomb.position = "absolute";
+  bomb.style.width = GRID_SIZE + "px";
+  bomb.style.height = GRID_SIZE + "px";
+  bomb.style.position = "absolute";
   //styleBomb.backgroundImage = "url('img/bombbird.png')";
   //styleBomb.backgroundRepeat = "no-repeat";
   //styleBomb.backgroundPosition = "center";
   bomb.style.left = String(x) + 'px';
   bomb.style.top = String(y) + 'px';
-  var pos = blockGrid[x/40][y/40];
+  var pos = blockGrid[x/GRID_SIZE][y/GRID_SIZE];
   document.getElementById("plateau").appendChild(bomb);
-  blockGrid[x/40][y/40].traverser = false;
+  blockGrid[x/GRID_SIZE][y/GRID_SIZE].traverser = false;
 }
 
-// for (var v = 0; i < blockEnnemi.length; v++) {
-//   console.log(blockEnnemi[v]);
-// }
+
 
 // fonction explosion de la bombe
 function explodeBomb() {
@@ -112,12 +109,16 @@ function explodeBomb() {
         var compteurEnnemi = blockEnnemi.length;
         if (positionArround[i].style.left.slice(0,-2)/GRID_SIZE === blockEnnemi[j].style.left.slice(0,-2)/GRID_SIZE && positionArround[i].style.top.slice(0,-2)/GRID_SIZE === blockEnnemi[j].style.top.slice(0,-2)/GRID_SIZE )
         {
-        blockEnnemi[j].classList.add("dead");
-        setTimeout(deleteEnnemi(j), 3000);
-        blockEnnemi[j].remove();
-        var compteurEnnemi = blockEnnemi.length;
-        console.log(compteurEnnemi);
-        }
+          blockEnnemi[j].classList.add("dead");
+          setTimeout(deleteEnnemi(j), 2000);
+          blockEnnemi.splice(j,1);
+          var compteurEnnemi = blockEnnemi.length;
+          console.log(compteurEnnemi);
+          }
+          if (compteurEnnemi === 0) {
+            setTimeout(winner(), 2000);
+          }
+
         //si le pion est trop prêt de la bombe
         if (x/GRID_SIZE === positionArround[i].style.left.slice(0,-2)/GRID_SIZE && y/GRID_SIZE === positionArround[i].style.top.slice(0,-2)/GRID_SIZE ) {
           document.getElementById("pion");
@@ -132,26 +133,48 @@ function explodeBomb() {
         }
       }
     }
-    // vérif toutes les positions autour de la bombe
+
+    // vérif s'il y a des murs cassables autour de la bombe
     for (var i = 0; i < positionArround.length; i++) {
      if (positionArround[i].className === "breakableWall"){
         positionArround[i].classList.add("fire");
-        setTimeout(deleteWall(i), 5000);
+        setTimeout(deleteWall(i), 2000);
       }
     }
-    setTimeout(deleteBomb, 2000);
+    setTimeout(deleteBomb(), 2000);
   }
 }
 
+// // verif si un ennemi vient sur le pion
+// console.log(pion.style.top.slice(0,-2) + "  ennemi " + xEnnemi * GRID_SIZE);
+// console.log(pion.style.left.slice(0,-2) + "  ennemi " + yEnnemi * GRID_SIZE);
+// //console.log("ennemi " + xEnnemi * GRID_SIZE);
+// //console.log("ennemi " + yEnnemi * GRID_SIZE);
+//
+// xp = (pion.style.top.slice(0,-2)/GRID_SIZE);
+// yp = (pion.style.left.slice(0,-2)/GRID_SIZE);
+// for (var j = 0; j < blockEnnemi.length; j++) {
+//
+// //if (pion.style.left.slice(0,-2) === xEnnemi * GRID_SIZE && pion.style.left.slice(0,-2) === yEnnemi * GRID_SIZE) {
+// if ( blockGrid[xEnnemi][yEnnemi] === blockGrid[xp][yp] ){
+//     pion.style.backgroundImage = 'url("img/piondead.png")';
+//     setTimeout(timer(),1000);
+//     document.getElementById('pion').remove();
+//     setTimeout(gameOver(),1000);
+//     document.location.reload(true);
+//  }
 
+// functions
 
 function deleteBomb() {
+  document.getElementById("bomb");
   let xB = (bomb.style.left.slice(0,-2))/GRID_SIZE;
   let yB = (bomb.style.top.slice(0,-2))/GRID_SIZE;
-  document.getElementById("bomb");
   bomb.classList.remove("explode");
   bomb.removeAttribute("id");
-  let param =blockGrid[xB][yB];
+  let param = blockGrid[xB][yB];
+  console.log(xB);
+  console.log(yB);
   setTimeout(floor(param), 5000);
   }
 
@@ -159,7 +182,7 @@ function deleteBomb() {
     positionArround[i].classList.remove("breakableWall");
     positionArround[i].classList.remove("fire");
     let param = positionArround[i];
-    setTimeout(floor(param), 5000);
+    setTimeout(floor(param), 2000);
   }
 
   function deleteEnnemi(j) {
@@ -169,7 +192,7 @@ function deleteBomb() {
     blockEnnemi[j].style.backgroundImage ="url('')";
     let param = blockEnnemi[j];
     blockEnnemi[j].remove();
-    setTimeout(floor(param), 5000);
+    setTimeout(floor(param), 2000);
   }
 
   // function gameOver(){
@@ -178,16 +201,26 @@ function deleteBomb() {
 
   function gameOver()
       {
-        window.open("gameover.htm","fenetrevolante","toolbar=no, location=no, directories=no, status=yes,<BR>scrollbars=yes, resizable=no, width="+300+", height="+200+", left="+300+", top="+50+"");
+        window.open("gameover.html","fenetrevolante","toolbar=no, location=no, directories=no, status=yes,<BR>scrollbars=yes, resizable=no, width="+300+", height="+200+", left="+300+", top="+50+"");
       }
-
+  function winner()
+      {
+        window.open("winner.html","fenetrevolante","toolbar=no, location=no, directories=no, status=yes,<BR>scrollbars=yes, resizable=no, width="+300+", height="+200+", left="+300+", top="+50+"");
+      }
   function floor(param){
     param.classList.add("floor");
     param.traverser = true;
+    // console.log(blockGrid[xB][yB].classList);
+    // console.log(blockGrid[xB][yB].traverser);
+    // console.log(blockEnnemi[j].classList);
+    // console.log(blockEnnemi[j].traverser);
+    // console.log(positionArround[i].classList);
+    // console.log(positionArround[i].traverser);
+
   }
 
   function timer() {
-    var counter = 10000;
+    var counter = 1000;
    if(counter !== 0)
    counter--;
     else {
