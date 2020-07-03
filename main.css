@@ -1,23 +1,70 @@
 
-div.container-fluid {
-  /* background-image: url(img/fond.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
-  /* opacity: 0.5; */
-  background-size: cover;
-  display: flex;
-  /* padding : 0; */
+
+@font-face {
+    font-family: 'angrybirds';
+    src: url('../Decouverte javascript/fonts/angrybirds-regular.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+body{
+    height:100vh;
+    width: auto;
+    background-image: url(img/fond-1440x900.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: fill;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    /* opacity: 0.9; */
+    padding: 20px;
+
+}
+
+#text{
+ width:30vw;
+
+/* display:flex;
+flex-direction: column;
+flex-grow: 2; */
+/* align-items: center;
+justify-content: space-around; */
+
+}
+
+#commandes, #score{
+    border-radius: 50px;
+    font-size: 2rem;
+    font-family: 'angrybirds', 'angrybirds2','angrybirds1';
+    font-weight: bold;
+    border: 1px double;
+    align-self:flex-end;
+    margin-bottom: 50px;
+    background-color: azure;
+    padding: 20px;
+}
+
+#commandes{
+  text-align: center;
+}
+
+h1{
+  /* width:100vw; */
+  font-family: 'angrybirds';
+  font-size: 5rem;
+  font-weight: bold;
 }
 
 #plateau{
-  height: 100wh;
-  width: auto;
-  position: relative;
-  justify-content: flex-end;
+    flex-grow: 8;
+    /* position: relative;  */
+
 }
 #pion{
   width: 40px;
-
   height: 40px;
   top: 0px;
   left: 0px;
@@ -28,12 +75,16 @@ div.container-fluid {
 
 #pion.explode{
   background-image: url('img/explosion.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .ennemi{
 background-image: url('img/blackbird.png');
 background-size: contain;
 background-position: center;
+background-repeat: no-repeat;
 
 }
 
@@ -41,12 +92,11 @@ background-position: center;
 background-image: url('img/explosion.gif');
 background-size: contain;
 background-position: center;
-
+background-repeat: no-repeat;
 }
 
 .floor{
   background-color: #7ff709;
-
 }
 
 .breakableWall{
@@ -57,7 +107,7 @@ background-position: center;
 }
 
 .breakableWall.fire{
-  background-image: url('img/feu.gif');
+  background-image: url('img/fire.gif');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -72,4 +122,7 @@ background-position: center;
 
 #bomb.explode{
   background-image: url('img/explosion.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

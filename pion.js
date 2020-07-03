@@ -51,18 +51,21 @@ document.onkeydown = function(event){
       return;
   }
 
+    console.log(pion);
   // verif si un ennemi vient sur le pion
-  console.log(pion.style.top.slice(0,-2) + "  ennemi " + blockEnnemi[i].style.left.slice(0,-2));
-  console.log(pion.style.left.slice(0,-2) + "  ennemi " + blockEnnemi[i].style.top.slice(0,-2));
-  for (var i = 0; i < blockEnnemi.length; i++) {
-     if (pion.style.top.slice(0,-2) === blockEnnemi[i].style.left.slice(0,-2) && pion.style.left.slice(0,-2) == blockEnnemi[i].style.top.slice(0,-2)) {
+
+    for (var i = 0; i < blockEnnemi.length; i++) {
+        // console.log(x + "  ennemi " + blockEnnemi[i].style.left.slice(0,-2));
+        // console.log(y + "  ennemi " + blockEnnemi[i].style.top.slice(0,-2));
+
+     if (x === blockEnnemi[i].style.left.slice(0,-2) && y === blockEnnemi[i].style.top.slice(0,-2)) {
        pion.style.backgroundImage = 'url("img/piondead.png")';
-       setTimeout(timer(),1000);
-       document.getElementById('pion').remove();
-       setTimeout(gameOver(),1000);
-       break;
+
+       setTimeout(gameOver,2000);
+
      }
    }
+
 
   pion.style.left = String(x) + 'px';
   pion.style.top = String(y) + 'px';
@@ -71,6 +74,8 @@ document.onkeydown = function(event){
 
 
 // fonction creation de la bombe
+
+var qtBombe = 0;
 function createBomb(){
   var bomb = document.createElement("div");
   bomb.id = "bomb";
@@ -83,8 +88,10 @@ function createBomb(){
   bomb.style.left = String(x) + 'px';
   bomb.style.top = String(y) + 'px';
   var pos = blockGrid[x/GRID_SIZE][y/GRID_SIZE];
-  document.getElementById("plateau").appendChild(bomb);
   blockGrid[x/GRID_SIZE][y/GRID_SIZE].traverser = false;
+  document.getElementById("plateau").appendChild(bomb);
+  qtBombe++;
+  console.log("bomb " +qtBombe);
 }
 
 
@@ -129,20 +136,17 @@ function explodeBomb() {
           console.log(compteurEnnemi);
           }
           if (compteurEnnemi === 0) {
-            setTimeout(winner(), 2000);
+            setTimeout(winner, 2000);
           }
 
         //si le pion est trop prêt de la bombe
         if (x/GRID_SIZE === positionArround[i].style.left.slice(0,-2)/GRID_SIZE && y/GRID_SIZE === positionArround[i].style.top.slice(0,-2)/GRID_SIZE ) {
           document.getElementById("pion");
           pion.classList.add("explode");
-          setTimeout(timer(), 2000);
+          setTimeout(timer, 2000);
           pion.classList.remove("explode");
           pion.style.backgroundImage = 'url("img/piondead.png")';
-          setTimeout(gameOver(), 1000);
-          // let param = pion;
-          // setTimeout(floor(param), 2000);
-          //pion.removeAttribute("id");
+          setTimeout(gameOver, 1000);
         }
       }
     }
@@ -154,28 +158,24 @@ function explodeBomb() {
         setTimeout(deleteWall(i), 2000);
       }
     }
-    setTimeout(deleteBomb(), 2000);
+    setTimeout(deleteBomb, 2000);
   }
 }
 
-// // verif si un ennemi vient sur le pion
-// console.log(pion.style.top.slice(0,-2) + "  ennemi " + xEnnemi * GRID_SIZE);
-// console.log(pion.style.left.slice(0,-2) + "  ennemi " + yEnnemi * GRID_SIZE);
-// //console.log("ennemi " + xEnnemi * GRID_SIZE);
-// //console.log("ennemi " + yEnnemi * GRID_SIZE);
-//
-// xp = (pion.style.top.slice(0,-2)/GRID_SIZE);
-// yp = (pion.style.left.slice(0,-2)/GRID_SIZE);
-// for (var j = 0; j < blockEnnemi.length; j++) {
-//
-// //if (pion.style.left.slice(0,-2) === xEnnemi * GRID_SIZE && pion.style.left.slice(0,-2) === yEnnemi * GRID_SIZE) {
-// if ( blockGrid[xEnnemi][yEnnemi] === blockGrid[xp][yp] ){
-//     pion.style.backgroundImage = 'url("img/piondead.png")';
-//     setTimeout(timer(),1000);
-//     document.getElementById('pion').remove();
-//     setTimeout(gameOver(),1000);
-//     document.location.reload(true);
-//  }
+var score = 4*(10-blockEnnemi.length)-qtBombe;
+var scores = document.createElement('div');
+var nbEnnemi = document.createElement('div');
+var nbBomb = document.createElement('div');
+var scoreText = document.createTextNode("Score : " + score);
+var nbEnnemiText = document.createTextNode("Ennemis : " + blockEnnemi.length);
+var nbBomnText = document.createTextNode("Bombes : " + qtBombe);
+scores.appendChild(scoreText);
+nbEnnemi.appendChild(nbEnnemiText);
+nbBomb.appendChild(nbBomnText);
+document.getElementById("score").appendChild(scores);
+document.getElementById("score").appendChild(nbEnnemi);
+document.getElementById("score").appendChild(nbBomb);
+
 
 // functions
 
@@ -215,6 +215,7 @@ function deleteBomb() {
   function gameOver()
       {
         window.open("gameover.html","fenetrevolante","toolbar=no, location=no, directories=no, status=yes,<BR>scrollbars=yes, resizable=no, width="+300+", height="+200+", left="+300+", top="+50+"");
+
       }
   function winner()
       {

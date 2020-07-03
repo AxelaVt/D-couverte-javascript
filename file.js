@@ -43,7 +43,6 @@ for(var i = 0; i < H_GRID; i++){
       block.traverser = false;
       }
 
-
       block.style.left = (i * GRID_SIZE).toString()+"px";  //  GRID_SIZE = 40
       block.style.top = (j * GRID_SIZE).toString()+"px";
       document.getElementById("plateau").appendChild(block);
@@ -63,6 +62,8 @@ blockGrid[9][9].ClassName = "birdCageClosed";
 blockGrid[9][10].style.backgroundImage = "url('img/cagebg.jpg')";
 blockGrid[9][10].traverser = false;
 blockGrid[9][10].ClassName = "birdCageClosed";
+
+
 
 
 function random100() {

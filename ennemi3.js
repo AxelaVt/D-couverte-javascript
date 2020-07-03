@@ -19,16 +19,29 @@ for(var i = 0; i < 10; i++){  //10 = nb d'ennemi à créer
     //ennemi.style.backgroundImage = 'url("img/blackbird.png")';
     //ennemi.style.backgroundPosition = "center";
     ennemi.setAttribute("class", "ennemi");
-    ennemi.style.zIndex = 100;
-    //ennemi.setAttribute("class", "floor");
+    ennemi.style.zIndex = 90;
     ennemi.setAttribute("id", "ennemi"+[i]);
     ennemi.posX = posX;
     ennemi.posY = posY;
     ennemi.direction = "right";
 
-    blockGrid[posX][posY].traverser = false;
+    blockGrid[posX][posY].traverser = true;
     ennemi.style.left = (posX*GRID_SIZE).toString()+"px";
     ennemi.style.top = (posY*GRID_SIZE).toString()+"px";
     document.getElementById("plateau").appendChild(ennemi);
     blockEnnemi.push(ennemi);
 }
+console.log(qtBombe);
+var score = 4*(10-blockEnnemi.length)-qtBombe;
+var scores = document.createElement('div');
+var nbEnnemi = document.createElement('div');
+var nbBomb = document.createElement('div');
+var scoreText = document.createTextNode("Score : " + score);
+var nbEnnemiText = document.createTextNode("Ennemis : " + blockEnnemi.length);
+var nbBomnText = document.createTextNode("Bombes : " + qtBombe);
+scores.appendChild(scoreText);
+nbEnnemi.appendChild(nbEnnemiText);
+nbBomb.appendChild(nbBomnText);
+document.getElementById("score").appendChild(scores);
+document.getElementById("score").appendChild(nbEnnemi);
+document.getElementById("score").appendChild(nbBomb);
